@@ -13,5 +13,10 @@ public sealed class UpdateProductCommand : ICommand<ProductDto>
     {
         Id = id;
     }
+
+    public void SetName(string name)
+    {
+        Name = name;
+    }
 }
 
