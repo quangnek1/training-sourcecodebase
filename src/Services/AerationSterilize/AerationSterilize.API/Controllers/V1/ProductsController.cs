@@ -75,4 +75,14 @@ public class ProductsController : ApiController
         var result = await Sender.Send(command);
         return Ok(result);
     }
+
+    [HttpPut("{productId}")]
+    [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateProduct(Guid productId, [FromBody] UpdateProductCommand command)
+    {
+        command.SetId(productId);
+        var result = await Sender.Send(command);
+        return Ok(result);
+    }
 }
