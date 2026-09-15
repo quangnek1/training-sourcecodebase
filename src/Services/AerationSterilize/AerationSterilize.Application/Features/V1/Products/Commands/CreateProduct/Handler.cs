@@ -24,4 +24,3 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
         return Result.Success(productEntity.Id);
     }
 }
-
