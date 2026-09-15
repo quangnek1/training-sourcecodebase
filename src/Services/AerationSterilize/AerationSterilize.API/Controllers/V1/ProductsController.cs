@@ -65,36 +65,41 @@ public class ProductsController : ApiController
         var result = await Sender.Send(new DeleteProductCommand(productId));
         return Ok(result);
     }
-
+    // hong sửa
     [HttpPut("{productId}")]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateProductById(Guid productId, [FromBody] UpdateProductCommand command)
+    public async Task<IActionResult> UpdateProductByIdABC(Guid productId, [FromBody] UpdateProductCommand command)
     {
         command.SetId(productId);
         var result = await Sender.Send(command);
         return Ok(result);
     }
 
-<<<<<<< HEAD
     [HttpPut("{productName}")]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateProductByName(string productName, [FromBody] UpdateProductCommand command)
     {
         command.SetName(productName);
-=======
+    }
 
     // Quang sua
     [HttpPut("{productId}")]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateProductByIdQuang(Guid productId, [FromBody] UpdateProductCommand command)
-
     {
         command.SetId(productId);
->>>>>>> 787c92a2dec5d12f45b75240a33c66cec76077be
         var result = await Sender.Send(command);
+    }
+    
+    [HttpDelete("{productId}")]
+    [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteProductABC(Guid productId)
+    {
+        var result = await Sender.Send(new DeleteProductCommand(productId));
         return Ok(result);
     }
 }
