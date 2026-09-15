@@ -65,14 +65,22 @@ public class ProductsController : ApiController
         var result = await Sender.Send(new DeleteProductCommand(productId));
         return Ok(result);
     }
-
+    // hong sửa
     [HttpPut("{productId}")]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateProductById(Guid productId, [FromBody] UpdateProductCommand command)
+    public async Task<IActionResult> UpdateProductByIdABC(Guid productId, [FromBody] UpdateProductCommand command)
     {
         command.SetId(productId);
         var result = await Sender.Send(command);
+        return Ok(result);
+    }
+    [HttpDelete("{productId}")]
+    [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteProductABC(Guid productId)
+    {
+        var result = await Sender.Send(new DeleteProductCommand(productId));
         return Ok(result);
     }
 }
